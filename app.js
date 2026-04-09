@@ -434,7 +434,7 @@ const CatalogModule = (() => {
 // 6. PRODUCT MODULE
 // ──────────────────────────────────────────────────────────────
 const ProductModule = (() => {
-  const WA_NUMBER = '573001234567';
+  const WA_NUMBER = '593997590844';
 
   function open(id) {
     const WATCHES = window.BEAUMONT_WATCHES || [];
