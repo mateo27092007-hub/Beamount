@@ -187,16 +187,20 @@ body {
    SIDE MENU BARRA LATERAL
 ================================================================ */
 .sidebar-btn {
-.sidebar-btn {
   position: fixed; top: 28px; left: 50%; transform: translateX(-50%); z-index: 101;
-  width: 52px; height: 52px; border-radius: 50%;
-  background: var(--gold); border: 2px solid #e0b42f;
+  width: 72px; height: 36px; border-radius: 100px;
+  background: rgba(18,18,18,0.5); backdrop-filter: blur(16px);
+  border: 1px solid rgba(242,202,80,0.3);
   display: flex; align-items: center; justify-content: center;
-  color: #000; cursor: pointer; backdrop-filter: blur(12px);
-  box-shadow: 0 4px 24px rgba(242,202,80,0.3);
-  transition: all 0.3s;
+  color: var(--gold); cursor: pointer; 
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.sidebar-btn:hover { background: #fff; color: #000; border-color: #fff; transform: translate(-50%, -4px); }
+.sidebar-btn:hover { 
+  background: rgba(28,28,28,0.8); color: #fff; border-color: var(--gold); 
+  transform: translateX(-50%) translateY(-2px) scale(1.02); 
+  box-shadow: 0 12px 40px rgba(242,202,80,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+}
 .side-drawer {
   position: fixed; top: 0; right: -320px; width: 320px; height: 100vh;
   background: rgba(8,7,6,0.98); backdrop-filter: blur(30px);
