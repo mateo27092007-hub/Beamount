@@ -120,8 +120,8 @@ const NavigationModule = (() => {
       }, { passive: true });
     }
 
-    const sectionIds = ['home','collections','exhibitions','heritage','reviews','atelier'];
-    const allNavLinks = document.querySelectorAll('.nav-link, .snav-link');
+    const sectionIds = ['home','collections','wrist-shots','heritage','reviews','atelier'];
+    const allNavLinks = document.querySelectorAll('.nav-link');
 
     const sObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
