@@ -253,25 +253,45 @@ body {
 .wrist-cell-icon { font-size: 28px; color: #fff; }
 
 /* ================================================================
-   REVIEWS
+   REVIEWS (SCROLLING MARQUEE)
 ================================================================ */
-#reviews { padding: 80px 60px; background: var(--surface-low); }
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-.review-card {
-  background: var(--surface-mid); border: 1px solid rgba(255,255,255,0.04); padding: 32px 28px;
-  transition: border-color 0.3s, transform 0.3s; position: relative; overflow: hidden;
+#reviews { padding: 80px 0; background: var(--surface-low); overflow: hidden; }
+.reviews-title-wrap { padding: 0 60px; margin-bottom: 48px; }
+.reviews-marquee-container {
+  width: 100%; overflow: hidden; position: relative;
 }
-.review-card::before { content: '"'; position: absolute; top: -10px; right: 20px; font-family: var(--font-serif); font-size: 100px; color: rgba(242,202,80,0.04); line-height: 1; }
-.review-card:hover { border-color: rgba(242,202,80,0.18); transform: translateY(-4px); }
-.review-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+.reviews-marquee-container::before, .reviews-marquee-container::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 5; pointer-events: none;
+}
+.reviews-marquee-container::before { left: 0; background: linear-gradient(to right, var(--surface-low), transparent); }
+.reviews-marquee-container::after { right: 0; background: linear-gradient(to left, var(--surface-low), transparent); }
+
+.reviews-marquee {
+  display: flex; gap: 24px; width: max-content;
+  animation: scrollReviews 35s linear infinite;
+  padding: 0 20px;
+}
+.reviews-marquee:hover { animation-play-state: paused; }
+@keyframes scrollReviews {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 12px)); }
+}
+.review-card {
+  width: 360px; flex-shrink: 0;
+  background: var(--surface-mid); border: 1px solid rgba(255,255,255,0.05); padding: 32px 28px;
+  transition: border-color 0.3s; position: relative; overflow: hidden; border-radius: 4px;
+}
+.review-card::before { content: '"'; position: absolute; top: -10px; right: 20px; font-family: var(--font-serif); font-size: 100px; color: rgba(242,202,80,0.04); line-height: 1; pointer-events: none; }
+.review-card:hover { border-color: rgba(242,202,80,0.2); }
+.review-stars { display: flex; gap: 3px; margin-bottom: 16px; color: var(--gold); font-size: 15px; }
 .review-text { font-family: var(--font-serif); font-size: 14.5px; line-height: 1.75; color: #b0a898; margin-bottom: 24px; font-style: italic; }
 .review-author { display: flex; align-items: center; gap: 12px; }
 .review-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #8b6a00); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #1a1000; flex-shrink: 0; }
 .review-name { font-size: 12px; font-weight: 600; color: var(--text); }
-.review-date { font-size: 10px; color: #333; margin-top: 2px; }
+.review-date { font-size: 10px; color: #444; margin-top: 2px; }
 .review-google { display: flex; align-items: center; gap: 5px; margin-top: 10px; }
 .google-icon { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; background: conic-gradient(#4285f4 0% 25%, #ea4335 25% 50%, #fbbc04 50% 75%, #34a853 75% 100%); }
-.review-source { font-size: 8.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #333; }
+.review-source { font-size: 8.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #444; }
 
 /* ================================================================
    TRUST BADGES & PAYMENT
@@ -285,11 +305,10 @@ body {
 .trust-block { padding: 36px 28px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); text-align: center; transition: border-color 0.4s, transform 0.4s; }
 .trust-block:hover { border-color: rgba(242,202,80,0.15); transform: translateY(-3px); }
 .trust-block-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; font-weight: 700; }
-.payment-logos { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: center; }
-.payment-logo { height: 38px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); padding: 6px 14px; filter: grayscale(100%) brightness(120%); transition: all 0.3s ease; cursor: pointer; border-radius: 4px; }
-.payment-logo img { height: 16px; object-fit: contain; }
-.payment-logo:hover { filter: grayscale(0%) brightness(100%); border-color: rgba(242,202,80,0.25); background: rgba(255,255,255,0.08); }
-.payment-logo-text { font-size: 8px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; line-height: 1.1; text-align: center; }
+.payment-logos { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+.payment-logo { height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 0 18px; transition: all 0.3s ease; border-radius: 8px; }
+.payment-logo:hover { border-color: rgba(242,202,80,0.4); background: rgba(242,202,80,0.06); transform: translateY(-2px); }
+.payment-logo-text { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #d0d0d0; }
 .bank-logos { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; }
 .bank-logo { padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); filter: grayscale(100%) brightness(180%); transition: all 0.3s ease; cursor: pointer; border-radius: 4px; }
 .bank-logo:hover { filter: grayscale(0%) brightness(100%); border-color: rgba(242,202,80,0.2); background: rgba(255,255,255,0.06); }
@@ -589,14 +608,25 @@ footer {
 
 <!-- REVIEWS -->
 <section id="reviews" class="s-reveal">
-  <div class="section-header" style="padding-bottom:0;">
-    <span class="section-eyebrow">Reseñas de Clientes</span>
-    <h2 class="section-h2">Lo Que Dicen <em>Nuestros Clientes</em></h2>
+  <div class="reviews-title-wrap">
+    <div class="section-header" style="padding:0;">
+      <span class="section-eyebrow">Reseñas de Clientes</span>
+      <h2 class="section-h2">Lo Que Dicen <em>Nuestros Clientes</em></h2>
+    </div>
   </div>
-  <div class="reviews-grid" style="padding:0 60px 80px;">
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Una experiencia de compra completamente diferente. El Santos de Cartier llegó con su caja original, garantía y documentación completa."</p><div class="review-author"><div class="review-avatar">AM</div><div><div class="review-name">Alejandro M.</div><div class="review-date">Hace 2 semanas</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Adquirí un Rolex Daytona y el proceso fue increíble. Atención personalizada, total transparencia. Mi segundo reloj con ellos."</p><div class="review-author"><div class="review-avatar">CR</div><div><div class="review-name">Camila R.</div><div class="review-date">Hace 1 mes</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"El Patek Philippe Nautilus que buscaba durante dos años, Beaumont lo tenía. Coleccionistas serios van aquí."</p><div class="review-author"><div class="review-avatar">JV</div><div><div class="review-name">Jorge V.</div><div class="review-date">Hace 3 semanas</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+  <div class="reviews-marquee-container">
+    <div class="reviews-marquee">
+      <!-- Original Set -->
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Una experiencia de compra completamente diferente. El Santos de Cartier llegó con su caja original, garantía y documentación completa."</p><div class="review-author"><div class="review-avatar">AM</div><div><div class="review-name">Alejandro M.</div><div class="review-date">Hace 2 semanas</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Adquirí un Rolex Daytona y el proceso fue increíble. Atención personalizada, total transparencia. Mi segundo reloj con ellos."</p><div class="review-author"><div class="review-avatar">CR</div><div><div class="review-name">Camila R.</div><div class="review-date">Hace 1 mes</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"El Patek Philippe Nautilus que buscaba durante dos años, Beaumont lo tenía. Coleccionistas serios van aquí."</p><div class="review-author"><div class="review-avatar">JV</div><div><div class="review-name">Jorge V.</div><div class="review-date">Hace 3 semanas</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Impecable. Desde el contacto inicial hasta la entrega asegurada en mi ciudad. El nivel de detalle en Beaumont es inigualable."</p><div class="review-author"><div class="review-avatar">DP</div><div><div class="review-name">Daniel P.</div><div class="review-date">Hace 1 mes</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+      <!-- Duplicate Set for Infinite Marquee -->
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Una experiencia de compra completamente diferente. El Santos de Cartier llegó con su caja original, garantía y documentación completa."</p><div class="review-author"><div class="review-avatar">AM</div><div><div class="review-name">Alejandro M.</div><div class="review-date">Hace 2 semanas</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Adquirí un Rolex Daytona y el proceso fue increíble. Atención personalizada, total transparencia. Mi segundo reloj con ellos."</p><div class="review-author"><div class="review-avatar">CR</div><div><div class="review-name">Camila R.</div><div class="review-date">Hace 1 mes</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"El Patek Philippe Nautilus que buscaba durante dos años, Beaumont lo tenía. Coleccionistas serios van aquí."</p><div class="review-author"><div class="review-avatar">JV</div><div><div class="review-name">Jorge V.</div><div class="review-date">Hace 3 semanas</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Impecable. Desde el contacto inicial hasta la entrega asegurada en mi ciudad. El nivel de detalle en Beaumont es inigualable."</p><div class="review-author"><div class="review-avatar">DP</div><div><div class="review-name">Daniel P.</div><div class="review-date">Hace 1 mes</div></div></div><div class="review-google"><div class="google-icon"></div><span class="review-source">Google Review</span></div></div>
+    </div>
   </div>
 </section>
 
@@ -610,11 +640,11 @@ footer {
     <div class="trust-block">
       <div class="trust-block-title">Tarjetas &amp; Billeteras Digitales</div>
       <div class="payment-logos">
-        <div class="payment-logo" title="Visa"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"/></div>
-        <div class="payment-logo" title="Mastercard"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"/></div>
-        <div class="payment-logo" title="American Express"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="AMEX"/></div>
-        <div class="payment-logo" title="PayPhone"><span class="payment-logo-text" style="color:#00b4d8;">PayPhone</span></div>
-        <div class="payment-logo" title="De Una!"><span class="payment-logo-text" style="color:#ff6b35;">De Una!</span></div>
+        <div class="payment-logo"><span class="payment-logo-text">Visa</span></div>
+        <div class="payment-logo"><span class="payment-logo-text">Mastercard</span></div>
+        <div class="payment-logo"><span class="payment-logo-text">Amex</span></div>
+        <div class="payment-logo"><span class="payment-logo-text" style="color:#00b4d8;">PayPhone</span></div>
+        <div class="payment-logo"><span class="payment-logo-text" style="color:#ff6b35;">De Una!</span></div>
       </div>
     </div>
     <div class="trust-block">
@@ -643,16 +673,9 @@ footer {
 <footer>
   <div>
     <div class="footer-brand">Beaumont</div>
-    <div class="footer-copy">© 2025 Beaumont Horology · Todos los Derechos Reservados</div>
-    <div style="margin-top:10px;font-size:10.5px;color:#333;">@Beaumont.club · Pedidos al DM</div>
+    <div class="footer-copy">© 2026 Beaumont Horology · Todos los Derechos Reservados</div>
+    <div style="margin-top:10px;font-size:10.5px;color:#333;">@Beaumont.club · Asesoría Privada</div>
   </div>
-  <nav class="footer-nav">
-    <a href="index.html" class="nav-link">Portal</a>
-    <a href="nosotros.html" class="nav-link">Nuestra Historia</a>
-    <a href="#wrist-shots" class="nav-link">Nuestros Clientes</a>
-    <a href="#trust-section" class="nav-link">Garantía Segura</a>
-    <a href="#" class="nav-link" onclick="openModal('Contacto','');">Contacto</a>
-  </nav>
 </footer>
 
 <!-- PRODUCT DETAIL OVERLAY -->
