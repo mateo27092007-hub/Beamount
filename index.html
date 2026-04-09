@@ -187,7 +187,7 @@ body {
    SIDE MENU BARRA LATERAL
 ================================================================ */
 .sidebar-btn {
-  position: fixed; top: 28px; left: 50%; transform: translateX(-50%); z-index: 101;
+  position: fixed; top: 62px; left: 50%; transform: translateX(-50%); z-index: 101;
   width: 72px; height: 36px; border-radius: 100px;
   background: rgba(18,18,18,0.5); backdrop-filter: blur(16px);
   border: 1px solid rgba(242,202,80,0.3);
@@ -232,14 +232,15 @@ body {
 ================================================================ */
 .wa-fab {
   position: fixed; bottom: 28px; right: 28px; z-index: 999;
-  width: 56px; height: 56px; background: #25D366; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; color: #fff;
-  box-shadow: 0 8px 28px rgba(37,211,102,0.35);
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  text-decoration: none;
+  width: 56px; height: 56px; background: rgba(10,10,10,0.9); border: 1px solid rgba(37,211,102,0.4); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: #25D366;
+  backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none; animation: wa-float 4s infinite ease-in-out;
 }
-.wa-fab:hover { transform: scale(1.1) translateY(-4px); }
+.wa-fab:hover { transform: scale(1.1) translateY(-8px); border-color: #25D366; color: #fff; background: #25D366; box-shadow: 0 15px 40px rgba(37,211,102,0.3); }
 .wa-fab svg { width: 28px; height: 28px; }
+@keyframes wa-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 20px rgba(37,211,102,0.15); } }
 
 /* ================================================================
    RESPONSIVE
@@ -249,6 +250,7 @@ body {
   #announcement-bar .announce-msg { font-size: 8px; letter-spacing: 0.12em; }
   
   #hero-gateway { margin-top: 34px; height: calc(100vh - 34px); }
+  .sidebar-btn { top: 56px; }
   
   #gw-men .gw-card-bg { background-size: 260%; background-position: center 48%; }
   #gw-women .gw-card-bg { background-size: 250%; background-position: center 30%; }
