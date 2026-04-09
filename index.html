@@ -1304,6 +1304,82 @@ footer {
   margin-top: 0px; 
   will-change: transform;
 }
+/* ================================================================
+   AI CONCIERGE WIDGET
+================================================================ */
+#concierge-btn {
+  position: fixed; bottom: 104px; right: 32px; z-index: 998;
+  width: 60px; height: 60px; background: rgba(18,15,10,0.85);
+  border: 1px solid rgba(242,202,80,0.2); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: var(--gold);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#concierge-btn:hover { transform: scale(1.1) translateY(-5px); border-color: var(--gold); background: #000; }
+#concierge-btn .mso { font-size: 28px; }
+
+#concierge-window {
+  position: fixed; bottom: 180px; right: 32px; z-index: 1000;
+  width: 360px; height: 500px; max-height: 70vh;
+  display: flex; flex-direction: column; background: rgba(14,12,8,0.92);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(242,202,80,0.15); border-radius: 16px; overflow: hidden;
+  transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+#concierge-window.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+
+.concierge-header {
+  padding: 16px 20px; background: rgba(0,0,0,0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.concierge-brand { display: flex; align-items: center; gap: 12px; }
+.concierge-brand .mso { color: var(--gold); font-size: 24px; }
+.concierge-brand > div { display: flex; flex-direction: column; }
+.concierge-brand strong { font-family: 'Newsreader', serif; font-size: 16px; color: #fff; font-weight: 300; }
+.concierge-brand span { font-size: 9px; color: #888; text-transform: uppercase; letter-spacing: 0.15em; }
+.concierge-close { background: none; border: none; color: #666; cursor: pointer; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
+.concierge-close:hover { color: #fff; }
+
+#concierge-chat {
+  flex: 1; padding: 20px; overflow-y: auto; overflow-x: hidden;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.c-msg { display: flex; flex-direction: column; max-width: 85%; animation: msg-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes msg-pop { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+.c-msg.bot { align-self: flex-start; }
+.c-msg.user { align-self: flex-end; }
+
+.c-bubble { padding: 12px 16px; font-size: 13px; line-height: 1.5; color: #ddd; border-radius: 12px; position: relative; }
+.c-msg.bot .c-bubble { background: rgba(255,255,255,0.05); border-bottom-left-radius: 2px; }
+.c-msg.user .c-bubble { background: var(--gold); border-bottom-right-radius: 2px; color: #111; font-weight: 600; }
+.c-msg.bot .c-bubble strong { color: var(--gold); font-weight: 600; }
+
+#concierge-chips {
+  padding: 16px 20px; background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.04);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.c-chip {
+  background: rgba(242,202,80,0.08); border: 1px solid rgba(242,202,80,0.2);
+  color: var(--gold); padding: 12px 16px; border-radius: 20px; font-family: 'Manrope', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-align: left; cursor: pointer; transition: all 0.3s;
+}
+.c-chip:hover { background: var(--gold); color: #111; }
+
+.typing-dots { display: flex; gap: 4px; padding: 4px 0; }
+.typing-dots span { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+.typing-dots span:nth-child(1) { animation-delay: 0s; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+
+@media (max-width: 600px) {
+  #concierge-btn { bottom: 90px; right: 24px; width: 54px; height: 54px; }
+  #concierge-window { bottom: 0; right: 0; left: 0; width: 100%; height: 85vh; max-height: 85vh; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border: none; border-top: 1px solid rgba(242,202,80,0.3); }
+}
 </style>
 </head>
 <body>
@@ -2230,58 +2306,124 @@ footer {
   </div>
 </div>
 
-<!-- ===== EXPERTISE FAQ ===== -->
-<section id="faq" class="section" style="padding-top:120px; padding-bottom:80px; max-width: 800px; margin:0 auto; border-top: 1px solid rgba(255,255,255,0.05);">
-  <div class="s-reveal text-center" style="text-align:center; margin-bottom:48px;">
-    <span class="section-eyebrow">Dudas Resueltas</span>
-    <h2 class="section-h2" style="font-size:42px;">Preguntas <em>Frecuentes</em></h2>
+<!-- ===== AI CONCIERGE BOT ===== -->
+<div id="concierge-btn" onclick="toggleConcierge()" aria-label="Abrir Conserje Virtual">
+  <span class="mso">smart_toy</span>
+</div>
+
+<div id="concierge-window">
+  <div class="concierge-header">
+    <div class="concierge-brand">
+      <span class="mso">support_agent</span>
+      <div>
+        <strong>Beaumont Concierge</strong>
+        <span>Bot Asistente Privado</span>
+      </div>
+    </div>
+    <button class="concierge-close" onclick="toggleConcierge()"><span class="mso">close</span></button>
   </div>
-  <style>
-    .faq-list { border-top: 1px solid rgba(255,255,255,0.06); }
-    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .faq-btn {
-      width: 100%; display: flex; justify-content: space-between; align-items: center;
-      background: transparent; border: none; color: #fff; font-family: 'Newsreader', serif;
-      font-size: 24px; text-align: left; padding: 32px 0; cursor: pointer; transition: color 0.3s;
-    }
-    .faq-btn:hover { color: var(--gold); }
-    .faq-ans {
-      max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease;
-      color: #777; font-family: 'Manrope', sans-serif; font-size: 15px; line-height: 1.8; opacity: 0;
-    }
-    .faq-ans p { padding-bottom: 32px; }
-    .faq-item.active .faq-ans { max-height: 250px; opacity: 1; }
-    .faq-item.active .faq-btn { color: var(--gold); }
-    .faq-item.active .faq-btn .mso { transform: rotate(45deg); color: var(--gold); }
-    .faq-btn .mso { transition: transform 0.4s ease; color: #555; }
-  </style>
-  <div class="faq-list s-reveal">
-    <div class="faq-item">
-      <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
-        ¿Realizan envíos a todo el Ecuador? <span class="mso">add</span>
-      </button>
-      <div class="faq-ans"><p>Por supuesto. Realizamos <strong>Envíos Nacionales</strong> a través de mensajería Express asegurada. Todos nuestros despachos pasan por un estricto control de calidad antes de enviarse y llegan directamente a tu domicilio o agencia de preferencia.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
-        ¿Qué garantía tienen los relojes? <span class="mso">add</span>
-      </button>
-      <div class="faq-ans"><p>Ofrecemos garantía en todos nuestros mecanismos. Puesto que manejamos estándares de alta relojería y grados Atelier con Acero 904L y cristal de zafiro inrayable, aseguramos una durabilidad insuperable en cada pieza de la colección.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
-        ¿Cuáles son los métodos de pago? <span class="mso">add</span>
-      </button>
-      <div class="faq-ans"><p>Aceptamos tarjetas de crédito, transferencias bancarias directas y disponemos de pago contra entrega en sectores exclusivos o ciudades principales. Puedes contactar directamente a uno de nuestros asesores para validar.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
-        ¿Cómo aseguran la calidad de las piezas? <span class="mso">add</span>
-      </button>
-      <div class="faq-ans"><p>En Beaumont no somos únicamente vendedores, somos relojeros apasionados. Sometemos cada pieza a nuestra "Anatomía del Tiempo", calibrando márgenes de error, hermeticidad y acabados estéticos bajo lupa microscópica antes de empacarse y salir a tus manos.</p></div>
-    </div>
+  
+  <div id="concierge-chat">
+    <!-- Messages appended dynamically -->
   </div>
-</section>
+  
+  <div id="concierge-chips">
+    <!-- Interactive options appended dynamically -->
+  </div>
+</div>
+
+<script>
+  const CONCIERGE_FLOW = [
+    {
+      id: "envios", label: "¿Hacen envíos a todo el Ecuador? 🚚",
+      reply: "Por supuesto. Realizamos **Envíos Nacionales Express** a través de mensajería asegurada. Todos nuestros despachos pasan por un estricto control de calidad visual y mecánico en nuestro Atelier antes de salir directamente a tu domicilio o agencia de preferencia."
+    },
+    {
+      id: "garantia", label: "¿Qué tipo de garantía tienen los relojes? 🛡️",
+      reply: "Nuestras piezas están fabricadas bajo altísimos grados de calidad, con Acero 904L y **cristales de zafiro inrayables**. Ofrecemos amplia cobertura técnica en todos nuestros mecanismos y calibres automáticos."
+    },
+    {
+      id: "pagos", label: "¿Cuáles son los métodos de pago aceptados? 💳",
+      reply: "Aceptamos todas las tarjetas de crédito, transferencias bancarias directas, y disponemos de la modalidad **Pago Contra Entrega** en sectores exclusivos (verifícalo con tu asesor). Todo el proceso es 100% seguro."
+    },
+    {
+      id: "asesor", label: "Quiero hablar con un asesor... 💬",
+      reply: "¡Será un absoluto placer! Te abriré el canal de comunicación privada para que podamos agendar tu cita física o responder dudas sobre tu reloj favorito.",
+      action: "openModal"
+    }
+  ];
+
+  let conciergeOpen = false;
+  let firstOpen = false;
+
+  function toggleConcierge() {
+    const win = document.getElementById("concierge-window");
+    conciergeOpen = !conciergeOpen;
+    if(conciergeOpen) {
+      win.classList.add("open");
+      if(!firstOpen) {
+        firstOpen = true;
+        botMessage("Bienvenido al Atelier Beaumont. Soy tu conserje virtual privado. ¿Con qué requerimiento te puedo asistir hoy?");
+      }
+    } else {
+      win.classList.remove("open");
+    }
+  }
+
+  function botMessage(text) {
+    const chat = document.getElementById("concierge-chat");
+    const chipsBox = document.getElementById("concierge-chips");
+    chipsBox.innerHTML = ""; // hide options
+    
+    // Typing indicator
+    const typingId = "typ-" + Date.now();
+    const typingHtml = `<div class="c-msg bot" id="${typingId}"><div class="c-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div></div>`;
+    chat.insertAdjacentHTML('beforeend', typingHtml);
+    chat.scrollTop = chat.scrollHeight;
+
+    setTimeout(() => {
+      const el = document.getElementById(typingId);
+      if(el) el.remove();
+      const formatted = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+      chat.insertAdjacentHTML('beforeend', `<div class="c-msg bot"><div class="c-bubble">${formatted}</div></div>`);
+      chat.scrollTop = chat.scrollHeight;
+      renderChips();
+    }, 1400); // 1.4s delay for realism
+  }
+
+  function userMessage(text, flowItem) {
+    const chat = document.getElementById("concierge-chat");
+    const chipsBox = document.getElementById("concierge-chips");
+    chipsBox.innerHTML = ""; // hide options immediately
+    
+    chat.insertAdjacentHTML('beforeend', `<div class="c-msg user"><div class="c-bubble">${text}</div></div>`);
+    chat.scrollTop = chat.scrollHeight;
+
+    setTimeout(() => {
+      botMessage(flowItem.reply);
+      if(flowItem.action === "openModal") {
+        setTimeout(() => { 
+          toggleConcierge(); 
+          if(typeof openModal === "function") openModal('Atención Personalizada', 'Habla con un asesor');
+        }, 2500); // Wait until bot finishes reply
+      }
+    }, 600); // User message sent delay
+  }
+
+  function renderChips() {
+    const chips = document.getElementById("concierge-chips");
+    let html = "";
+    CONCIERGE_FLOW.forEach((item, idx) => {
+      html += `<button class="c-chip" onclick="handleChip(${idx})">${item.label}</button>`;
+    });
+    chips.innerHTML = html;
+  }
+
+  function handleChip(idx) {
+    const item = CONCIERGE_FLOW[idx];
+    userMessage(item.label, item);
+  }
+</script>
 
 <!-- ===== GLOBAL WHATSAPP BUTTON ===== -->
 <style>
