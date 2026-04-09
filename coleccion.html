@@ -305,10 +305,49 @@ body {
 .trust-block { padding: 36px 28px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); text-align: center; transition: border-color 0.4s, transform 0.4s; }
 .trust-block:hover { border-color: rgba(242,202,80,0.15); transform: translateY(-3px); }
 .trust-block-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; font-weight: 700; }
-.payment-logos { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
-.payment-logo { height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 0 18px; transition: all 0.3s ease; border-radius: 8px; }
-.payment-logo:hover { border-color: rgba(242,202,80,0.4); background: rgba(242,202,80,0.06); transform: translateY(-2px); }
-.payment-logo-text { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #d0d0d0; }
+/* PURE CSS PAYMENT CARDS */
+.payment-logos { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }
+.pay-card { 
+  width: 50px; height: 32px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  background: #fff; font-family: 'Arial', sans-serif; cursor: pointer; transition: transform 0.2s;
+}
+.pay-card:hover { transform: translateY(-2px); }
+
+/* AMEX */
+.pay-card.amex { background: #007bc1; color: #fff; font-weight: 800; font-size: 11px; line-height: 1; text-align: center; }
+.pay-card.amex span { transform: scale(0.8); display: block; }
+
+/* DINERS */
+.pay-card.diners { color: #005697; font-weight: 800; font-size: 14px; letter-spacing: -1px; }
+
+/* DISCOVER */
+.pay-card.discover { color: #000; font-weight: 800; font-size: 8px; letter-spacing: 0; }
+.discover-o { display: inline-block; width: 8px; height: 8px; background: #f28122; border-radius: 50%; vertical-align: middle; margin: 0 1px; }
+
+/* JCB */
+.pay-card.jcb { display: flex; gap: 1px; }
+.jcb-box { font-weight: 800; font-size: 9px; color: #fff; padding: 2px; border-radius: 2px; }
+
+/* MAESTRO / MASTERCARD */
+.mc-circles { position: relative; width: 30px; height: 20px; display: flex; align-items: center; justify-content: center; }
+.mc-c1, .mc-c2 { width: 18px; height: 18px; border-radius: 50%; position: absolute; }
+.mc-c1 { background: #eb001b; left: 0; z-index: 1; }
+.mc-c2 { background: #f79e1b; right: 0; z-index: 2; }
+.mastercard .mc-c2 { background: #ff5f00; mix-blend-mode: multiply; opacity: 0.9; }
+
+/* PAYPAL */
+.pay-card.paypal { color: #003087; font-weight: 800; font-style: italic; font-size: 12px; letter-spacing: -0.5px; }
+.pay-card.paypal span:last-child { color: #009cde; }
+
+/* VISA */
+.pay-card.visa { color: #1a1f71; font-weight: 900; font-style: italic; font-size: 14px; position: relative; }
+.visa-flick { position: absolute; top: 12px; left: 0; width: 8px; height: 3px; background: #f7b600; border-radius: 2px; transform: rotate(-15deg); }
+
+/* VISA ELECTRON */
+.pay-card.electron { background: #00579f; flex-direction: column; justify-content: top; padding-top: 4px; }
+.electron .visa-text { color: #fff; font-weight: 900; font-style: italic; font-size: 10px; }
+.electron .elec-text { color: #fff; font-weight: 700; font-size: 6px; font-style: italic; letter-spacing: 0.5px; margin-top: 2px; }
 .bank-logos { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; }
 .bank-logo { padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); filter: grayscale(100%) brightness(180%); transition: all 0.3s ease; cursor: pointer; border-radius: 4px; }
 .bank-logo:hover { filter: grayscale(0%) brightness(100%); border-color: rgba(242,202,80,0.2); background: rgba(255,255,255,0.06); }
@@ -640,11 +679,26 @@ footer {
     <div class="trust-block">
       <div class="trust-block-title">Tarjetas &amp; Billeteras Digitales</div>
       <div class="payment-logos">
-        <div class="payment-logo"><span class="payment-logo-text">Visa</span></div>
-        <div class="payment-logo"><span class="payment-logo-text">Mastercard</span></div>
-        <div class="payment-logo"><span class="payment-logo-text">Amex</span></div>
-        <div class="payment-logo"><span class="payment-logo-text" style="color:#00b4d8;">PayPhone</span></div>
-        <div class="payment-logo"><span class="payment-logo-text" style="color:#ff6b35;">De Una!</span></div>
+        <div class="pay-card amex" title="American Express"><span>AM<br>EX</span></div>
+        <div class="pay-card diners" title="Diners Club">Diners</div>
+        <div class="pay-card discover" title="Discover">DISC<span class="discover-o"></span>VER</div>
+        <div class="pay-card jcb" title="JCB">
+          <div class="jcb-box" style="background:#0051a8;">J</div>
+          <div class="jcb-box" style="background:#cc0033;">C</div>
+          <div class="jcb-box" style="background:#007f3e;">B</div>
+        </div>
+        <div class="pay-card maestro" title="Maestro">
+          <div class="mc-circles"><div class="mc-c1" style="background:#0064cb;"></div><div class="mc-c2" style="background:#cc2128;"></div></div>
+        </div>
+        <div class="pay-card mastercard" title="Mastercard">
+          <div class="mc-circles"><div class="mc-c1"></div><div class="mc-c2"></div></div>
+        </div>
+        <div class="pay-card paypal" title="PayPal"><span>Pay</span><span>Pal</span></div>
+        <div class="pay-card visa" title="Visa">VISA</div>
+        <div class="pay-card electron" title="Visa Electron">
+          <div class="visa-text">VISA</div>
+          <div class="elec-text">Electron</div>
+        </div>
       </div>
     </div>
     <div class="trust-block">
