@@ -82,12 +82,12 @@
   --radius: 0px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background: var(--surface);
   color: var(--text);
   font-family: 'Manrope', sans-serif;
-  overflow-x: hidden;
+  overflow-x: hidden; width: 100%; position: relative;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -618,6 +618,9 @@ body {
 /* ================================================================
    EXHIBITIONS
 ================================================================ */
+.exhib-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:16px; margin-top:48px; }
+@media (max-width: 900px) { .exhib-grid { grid-template-columns: 1fr; } }
+
 .exhib-card {
   border: 1px solid rgba(255,255,255,0.05); overflow: hidden;
   cursor: pointer; transition: border-color 0.35s, transform 0.35s;
@@ -1648,7 +1651,7 @@ footer {
       <span class="section-eyebrow">Próximas &amp; Actuales</span>
       <h2 class="section-h2">Exposiciones <em>Globales</em></h2>
     </div>
-    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:48px;" class="s-reveal">
+    <div class="exhib-grid s-reveal">
       <div class="exhib-card" onclick="openModal('SIHH Ginebra — Vista Privada','Solo por Invitación')">
         <img class="exhib-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUkUSD9dseYasyy5bhPY1et42-tioVuLW6zVljPl2saDgHamgdz2AGnobywdBxw1IHJ8DvRr7vFpJ19qTOUYI7-owdbbbm2Ec_6sxeASe6Qa2bcQAkTLmNz_SDUpF532vnjlwv1LvfJ-il5YqqZB6xZvQEoV73C1QTmFp-T8Mt4CC_11avzBISGSfND9wCzPmHqJh5KVDWCfjfMqVOgQk5MDElnK62ff_uHlOXyNYQHbBTWMyrxT75RLPTPtiS05FiR-LYBPKC1g0" alt="Geneva Watch Fair"/>
         <div class="exhib-card-body">
