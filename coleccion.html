@@ -286,11 +286,12 @@ body {
 .trust-block:hover { border-color: rgba(242,202,80,0.15); transform: translateY(-3px); }
 .trust-block-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; font-weight: 700; }
 .payment-logos { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: center; }
-.payment-logo { width: 56px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); padding: 6px 8px; filter: grayscale(100%) brightness(200%); transition: all 0.3s ease; cursor: pointer; }
+.payment-logo { height: 38px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); padding: 6px 14px; filter: grayscale(100%) brightness(120%); transition: all 0.3s ease; cursor: pointer; border-radius: 4px; }
+.payment-logo img { height: 16px; object-fit: contain; }
 .payment-logo:hover { filter: grayscale(0%) brightness(100%); border-color: rgba(242,202,80,0.25); background: rgba(255,255,255,0.08); }
-.payment-logo-text { font-size: 7px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; line-height: 1.1; text-align: center; }
+.payment-logo-text { font-size: 8px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; line-height: 1.1; text-align: center; }
 .bank-logos { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; }
-.bank-logo { padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); filter: grayscale(100%) brightness(180%); transition: all 0.3s ease; cursor: pointer; }
+.bank-logo { padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); filter: grayscale(100%) brightness(180%); transition: all 0.3s ease; cursor: pointer; border-radius: 4px; }
 .bank-logo:hover { filter: grayscale(0%) brightness(100%); border-color: rgba(242,202,80,0.2); background: rgba(255,255,255,0.06); }
 .bank-logo-text { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: #bbb; white-space: nowrap; }
 .logistics-info { display: flex; flex-direction: column; align-items: center; gap: 16px; }
@@ -397,6 +398,40 @@ footer {
 .wa-fab { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 8px 28px rgba(37,211,102,0.35); transition: transform 0.3s; text-decoration: none; }
 .wa-fab:hover { transform: scale(1.1) translateY(-4px); }
 .wa-fab svg { width: 28px; height: 28px; }
+
+/* ================================================================
+   AI CONCIERGE WIDGET
+================================================================ */
+#concierge-btn { position: fixed; bottom: 28px; right: 96px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: rgba(18,16,14,0.9); border: 1px solid rgba(242,202,80,0.3); display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0,0,0,0.6); transition: transform 0.3s, background 0.3s; }
+#concierge-btn:hover { transform: scale(1.1) translateY(-4px); border-color: var(--gold); background: #111; }
+#concierge-btn .mso { font-size: 26px; }
+
+#concierge-window { position: fixed; bottom: 100px; right: 28px; width: 340px; max-height: calc(100vh - 120px); background: rgba(12,10,8,0.95); backdrop-filter: blur(40px); border: 1px solid rgba(242,202,80,0.15); border-radius: 16px; z-index: 998; display: flex; flex-direction: column; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 60px rgba(0,0,0,0.8); overflow: hidden; }
+#concierge-window.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+.concierge-header { padding: 16px 20px; background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: center; }
+.concierge-brand { display: flex; align-items: center; gap: 12px; }
+.concierge-brand .mso { color: var(--gold); font-size: 24px; }
+.concierge-brand > div { display: flex; flex-direction: column; }
+.concierge-brand strong { font-family: var(--font-serif); font-size: 16px; color: #fff; font-weight: 400; }
+.concierge-brand span { font-size: 9px; color: #888; text-transform: uppercase; letter-spacing: 0.15em; }
+.concierge-close { background: none; border: none; color: #666; cursor: pointer; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
+.concierge-close:hover { color: #fff; }
+#concierge-chat { flex: 1; padding: 20px; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: 16px; min-height: 250px; }
+.c-msg { display: flex; flex-direction: column; max-width: 85%; animation: msg-pop 0.3s forwards; }
+@keyframes msg-pop { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+.c-msg.bot { align-self: flex-start; }
+.c-msg.user { align-self: flex-end; }
+.c-bubble { padding: 12px 16px; font-size: 13px; line-height: 1.5; color: #ddd; border-radius: 12px; position: relative; }
+.c-msg.bot .c-bubble { background: rgba(255,255,255,0.05); border-bottom-left-radius: 2px; }
+.c-msg.user .c-bubble { background: var(--gold); border-bottom-right-radius: 2px; color: #111; font-weight: 600; }
+.c-msg.bot .c-bubble strong { color: var(--gold); font-weight: 600; }
+#concierge-chips { padding: 16px 20px; background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.04); display: flex; flex-direction: column; gap: 8px; }
+.c-chip { background: rgba(242,202,80,0.08); border: 1px solid rgba(242,202,80,0.2); color: var(--gold); padding: 12px 16px; border-radius: 20px; font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-align: left; cursor: pointer; transition: all 0.3s; }
+.c-chip:hover { background: var(--gold); color: #111; }
+.typing-dots { display: flex; gap: 4px; padding: 4px 0; }
+.typing-dots span { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
 
 /* ================================================================
    RESPONSIVE
@@ -507,14 +542,14 @@ footer {
     <h2 class="section-h2">En las muñecas de <em>nuestros clientes</em></h2>
   </div>
   <div class="wrist-grid">
-    <div class="wrist-cell"><img src="imagenes Beamount/m126518ln-0014-8.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
-    <div class="wrist-cell"><img src="imagenes Beamount/IW545901.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
-    <div class="wrist-cell"><img src="imagenes Beamount/m126518ln-0014-8.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
-    <div class="wrist-cell"><img src="imagenes Beamount/IW545901.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
-    <div class="wrist-cell"><img src="imagenes Beamount/IW545901.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
-    <div class="wrist-cell"><img src="imagenes Beamount/m126518ln-0014-8.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
-    <div class="wrist-cell"><img src="imagenes Beamount/IW545901.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
-    <div class="wrist-cell"><img src="imagenes Beamount/m126518ln-0014-8.webp" alt="Cliente" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/m126518ln-0014-8-removebg-preview.png" alt="Cliente usando Rolex" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/IW545901-removebg-preview (1).png" alt="Cliente usando IWC" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/31030425001001_1_1200x-removebg-preview.png" alt="Cliente usando Omega" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/36mm-cartier-santos-white-montre-stainless-bijoux-medusa-homme-quebec-canada-119-removebg-preview (1).png" alt="Cliente usando Cartier" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/Captura_de_pantalla_2026-04-09_020122-removebg-preview.png" alt="Cliente Beaumont" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/29525933_58480091_600-removebg-preview.png" alt="Cliente Patek Philippe" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/images-removebg-preview (1).png" alt="Cliente Audemars Piguet" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
+    <div class="wrist-cell"><img src="imagenes Beamount/images__1_-removebg-preview.png" alt="Cliente Rolex" loading="lazy"/><div class="wrist-cell-overlay"><span class="mso wrist-cell-icon">favorite</span></div></div>
   </div>
 </section>
 
@@ -541,11 +576,11 @@ footer {
     <div class="trust-block">
       <div class="trust-block-title">Tarjetas &amp; Billeteras Digitales</div>
       <div class="payment-logos">
-        <div class="payment-logo" title="Visa"><span class="payment-logo-text" style="font-size:11px;font-weight:900;color:#1a1f71;">VISA</span></div>
-        <div class="payment-logo" title="Mastercard"><span class="payment-logo-text" style="font-size:7px;font-weight:800;color:#eb001b;">Master<span style="color:#f79e1b;">card</span></span></div>
-        <div class="payment-logo" title="AMEX"><span class="payment-logo-text" style="font-size:6px;font-weight:800;color:#006fcf;">AMEX</span></div>
-        <div class="payment-logo" title="PayPhone"><span class="payment-logo-text" style="font-size:6.5px;color:#00b4d8;">PayPhone</span></div>
-        <div class="payment-logo" title="De Una!"><span class="payment-logo-text" style="font-size:7px;color:#ff6b35;">De Una!</span></div>
+        <div class="payment-logo" title="Visa"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"/></div>
+        <div class="payment-logo" title="Mastercard"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"/></div>
+        <div class="payment-logo" title="American Express"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="AMEX"/></div>
+        <div class="payment-logo" title="PayPhone"><span class="payment-logo-text" style="color:#00b4d8;">PayPhone</span></div>
+        <div class="payment-logo" title="De Una!"><span class="payment-logo-text" style="color:#ff6b35;">De Una!</span></div>
       </div>
     </div>
     <div class="trust-block">
@@ -646,6 +681,26 @@ footer {
   </div>
 </div>
 
+<!-- ===== AI CONCIERGE BOT ===== -->
+<div id="concierge-btn" onclick="toggleConcierge()" aria-label="Abrir Conserje Virtual">
+  <span class="mso">smart_toy</span>
+</div>
+
+<div id="concierge-window">
+  <div class="concierge-header">
+    <div class="concierge-brand">
+      <span class="mso">smart_toy</span>
+      <div>
+        <strong>Beaumont Concierge</strong>
+        <span>Experto Relojero</span>
+      </div>
+    </div>
+    <button class="concierge-close" onclick="toggleConcierge()"><span class="mso">close</span></button>
+  </div>
+  <div id="concierge-chat"></div>
+  <div id="concierge-chips"></div>
+</div>
+
 <!-- WHATSAPP FAB -->
 <a href="https://wa.me/593900000000" target="_blank" class="wa-fab" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -676,6 +731,58 @@ const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
 }, { threshold: 0.06 });
 document.querySelectorAll('.s-reveal').forEach(el => revObs.observe(el));
+
+// AI Concierge
+const CONCIERGE_FLOW = [
+  { q: "¿Atención al cliente?", a: "Toda nuestra atención es 100% personalizada. Contáctenos y coordinaremos una llamada o reunión presencial." },
+  { q: "¿Qué métodos de pago aceptan?", a: "Aceptamos transferencias, tarjetas (Visa, Mastercard, Amex), efectivo y criptomonedas. Posibilidad de pago diferido disponible." },
+  { q: "¿Los relojes son originales?", a: "Absolutamente. Cada pieza pasa por una exhaustiva verificación y se entrega con su <strong>Full Set original</strong> y certificado Beaumont." },
+  { q: "¿Cómo hacen los envíos?", a: "Trabajamos con envíos asegurados a todo el país vía Servientrega, con rastreo en tiempo real y empaques anti-impacto camuflados." }
+];
+let conciergeOpen = false;
+function toggleConcierge() {
+  const win = document.getElementById("concierge-window");
+  conciergeOpen = !conciergeOpen;
+  if(conciergeOpen) {
+    win.classList.add("open");
+    if(document.getElementById("concierge-chat").innerHTML.trim() === "") {
+      appendBotMsg("Bienvenido a <strong>Beaumont Horology</strong>. Soy su asistente virtual. ¿En qué le puedo ayudar hoy?");
+      renderChips();
+    }
+  } else { win.classList.remove("open"); }
+}
+function appendBotMsg(text) {
+  const chat = document.getElementById("concierge-chat");
+  const id = "typ-" + Date.now();
+  chat.innerHTML += `<div class="c-msg bot" id="${id}"><div class="c-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div></div>`;
+  chat.scrollTop = chat.scrollHeight;
+  setTimeout(() => {
+    document.getElementById(id).innerHTML = `<div class="c-bubble">${text}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }, 1000);
+}
+function appendUserMsg(text) {
+  const chat = document.getElementById("concierge-chat");
+  chat.innerHTML += `<div class="c-msg user"><div class="c-bubble">${text}</div></div>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+function renderChips() {
+  const chips = document.getElementById("concierge-chips");
+  chips.innerHTML = "";
+  CONCIERGE_FLOW.forEach((item, idx) => {
+    chips.innerHTML += `<button class="c-chip" onclick="handleConciergeClick(${idx})">${item.q}</button>`;
+  });
+  chips.innerHTML += `<button class="c-chip" onclick="window.open('https://wa.me/593900000000', '_blank')">Contactar por WhatsApp</button>`;
+}
+function handleConciergeClick(idx) {
+  const item = CONCIERGE_FLOW[idx];
+  document.getElementById("concierge-chips").innerHTML = "";
+  appendUserMsg(item.q);
+  setTimeout(() => {
+    appendBotMsg(item.a);
+    setTimeout(() => renderChips(), 1500);
+  }, 500);
+}
 </script>
 
 </body>
