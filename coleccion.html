@@ -467,8 +467,8 @@ footer {
 /* ================================================================
    SIDE MENU BARRA LATERAL
 ================================================================ */
-.sidebar-btn { position: fixed; top: 58px; right: 28px; z-index: 999; width: 44px; height: 44px; border-radius: 50%; background: rgba(10,10,10,0.8); border: 1px solid rgba(242,202,80,0.3); display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; backdrop-filter: blur(12px); transition: all 0.3s; }
-.sidebar-btn:hover { background: var(--gold); color: #000; transform: scale(1.05); }
+.sidebar-btn { position: fixed; top: 16px; right: 28px; z-index: 999; width: 52px; height: 52px; border-radius: 50%; background: var(--gold); border: 2px solid #e0b42f; display: flex; align-items: center; justify-content: center; color: #000; cursor: pointer; backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(242,202,80,0.3); transition: all 0.3s; }
+.sidebar-btn:hover { background: #fff; color: #000; border-color: #fff; transform: scale(1.08); }
 .side-drawer { position: fixed; top: 0; right: -320px; width: 320px; height: 100vh; background: rgba(8,7,6,0.98); backdrop-filter: blur(30px); border-left: 1px solid rgba(242,202,80,0.15); z-index: 1000; padding: 80px 40px; transition: right 0.5s cubic-bezier(0.2,0.8,0.2,1); box-shadow: -20px 0 60px rgba(0,0,0,0.9); }
 .side-drawer.open { right: 0; }
 .side-drawer-close { position: absolute; top: 28px; right: 28px; background: none; border: none; color: #888; cursor: pointer; transition: color 0.3s; }
@@ -485,7 +485,7 @@ footer {
 
 <!-- ===== SIDEBAR MENU ===== -->
 <div class="sidebar-btn" onclick="toggleSidebar()">
-  <span class="mso">more_vert</span>
+  <span class="mso" style="font-size:24px; font-weight: 800; color: #000;">menu</span>
 </div>
 <div class="side-drawer" id="side-drawer">
   <button class="side-drawer-close" onclick="toggleSidebar()"><span class="mso" style="font-size:32px;">close</span></button>

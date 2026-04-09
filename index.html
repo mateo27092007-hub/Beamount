@@ -187,14 +187,16 @@ body {
    SIDE MENU BARRA LATERAL
 ================================================================ */
 .sidebar-btn {
-  position: fixed; top: 58px; right: 28px; z-index: 101;
-  width: 48px; height: 48px; border-radius: 50%;
-  background: rgba(10,10,10,0.8); border: 1px solid rgba(242,202,80,0.3);
+.sidebar-btn {
+  position: fixed; top: 18px; right: 28px; z-index: 101;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--gold); border: 2px solid #e0b42f;
   display: flex; align-items: center; justify-content: center;
-  color: var(--gold); cursor: pointer; backdrop-filter: blur(12px);
+  color: #000; cursor: pointer; backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(242,202,80,0.3);
   transition: all 0.3s;
 }
-.sidebar-btn:hover { background: var(--gold); color: #000; transform: scale(1.05); }
+.sidebar-btn:hover { background: #fff; color: #000; border-color: #fff; transform: scale(1.08); }
 .side-drawer {
   position: fixed; top: 0; right: -320px; width: 320px; height: 100vh;
   background: rgba(8,7,6,0.98); backdrop-filter: blur(30px);
@@ -304,7 +306,7 @@ body {
 
 <!-- ===== SIDEBAR MENU WIDGET (Tres puntitos) ===== -->
 <div class="sidebar-btn" onclick="toggleSidebar()" aria-label="Menú Principal">
-  <span class="mso">more_vert</span>
+  <span class="mso" style="font-size:24px; font-weight: 800; color: #000;">menu</span>
 </div>
 
 <div class="side-drawer" id="side-drawer">
