@@ -407,13 +407,13 @@ footer {
 .pd-topbar-actions { display: flex; gap: 10px; align-items: center; }
 .pd-action { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.07); background: none; cursor: pointer; color: #444; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
 .pd-action:hover { border-color: rgba(242,202,80,0.4); color: var(--gold); }
-#pd-body { flex: 1; display: grid; grid-template-columns: 1fr 480px; overflow: hidden; position: relative; }
-#pd-visual { position: relative; display: flex; align-items: center; justify-content: center; background: #060606; min-height: 400px; padding: 40px; }
+#pd-body { flex: 1; display: grid; grid-template-columns: 1fr 480px; overflow: visible; position: relative; }
+#pd-visual { position: relative; display: flex; align-items: center; justify-content: center; background: #060606; min-height: 500px; padding: 60px; overflow: visible; }
 .pd-visual-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 55% 48%, rgba(160,110,30,0.18) 0%, transparent 65%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(242,202,80,0.05) 0%, transparent 55%), #060606; }
 #pd-tech-tags { position: absolute; right: 32px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 10; }
 .pd-tech-tag { font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: #2a2a2a; padding: 8px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); }
-#pd-watch-img { max-height: 72vh; max-width: 85%; object-fit: contain; filter: drop-shadow(0 30px 80px rgba(0,0,0,0.85)) drop-shadow(0 0 60px rgba(180,130,40,0.18)); position: relative; z-index: 2; transition: transform 0.3s ease; animation: float 8s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0px) rotate(-0.5deg); } 50% { transform: translateY(-12px) rotate(0.5deg); } }
+#pd-watch-img { width: auto; height: auto; max-height: 75vh; max-width: 90%; object-fit: contain; filter: drop-shadow(0 30px 80px rgba(0,0,0,0.85)) drop-shadow(0 0 60px rgba(180,130,40,0.18)); position: relative; z-index: 2; transition: transform 0.3s ease; animation: float 8s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0px) rotate(-0.5deg); } 50% { transform: translateY(-15px) rotate(0.5deg); } }
 #pd-scrubber { position: absolute; bottom: 40px; left: 60px; right: 60px; display: flex; align-items: center; gap: 16px; color: #222; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; }
 #pd-scrubber-line { flex: 1; height: 1px; background: #1a1a1a; position: relative; }
 #pd-scrubber-dot { position: absolute; top: 50%; left: 20%; transform: translate(-50%, -50%); width: 5px; height: 5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px rgba(242,202,80,0.5); }
@@ -526,8 +526,9 @@ footer {
   .wrist-grid { grid-template-columns: repeat(2, 1fr); }
   .reviews-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
-  #pd-body { grid-template-columns: 1fr; }
-  #pd-visual { min-height: 50vh; }
+  #pd-body { grid-template-columns: 1fr; overflow: visible; }
+  #pd-visual { min-height: 450px; padding: 30px 20px; }
+  #pd-watch-img { max-height: 400px; }
   footer { flex-direction: column; padding: 40px 24px; }
 }
 @media (max-width: 600px) {
