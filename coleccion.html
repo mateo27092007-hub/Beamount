@@ -348,10 +348,37 @@ body {
 .pay-card.electron { background: #00579f; flex-direction: column; justify-content: top; padding-top: 4px; }
 .electron .visa-text { color: #fff; font-weight: 900; font-style: italic; font-size: 10px; }
 .electron .elec-text { color: #fff; font-weight: 700; font-size: 6px; font-style: italic; letter-spacing: 0.5px; margin-top: 2px; }
-.bank-logos { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; }
-.bank-logo { padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); filter: grayscale(100%) brightness(180%); transition: all 0.3s ease; cursor: pointer; border-radius: 4px; }
-.bank-logo:hover { filter: grayscale(0%) brightness(100%); border-color: rgba(242,202,80,0.2); background: rgba(255,255,255,0.06); }
-.bank-logo-text { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: #bbb; white-space: nowrap; }
+
+/* BANCOS LOCALES CSS */
+.bank-logos { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+.bank-card {
+  width: 130px; height: 42px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #111; font-family: 'Arial', sans-serif; cursor: pointer; transition: transform 0.2s, background 0.3s;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.bank-card:hover { transform: translateY(-2px); background: #181818; border-color: rgba(242,202,80,0.3); }
+
+/* PICHINCHA */
+.bank-card.pichincha { background: #ffe600; border: none; }
+.p-icon { width: 14px; height: 14px; background: #000; clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%); }
+.p-text { color: #000; font-weight: 900; font-size: 11px; letter-spacing: -0.2px; text-transform: uppercase; }
+
+/* GUAYAQUIL */
+.bank-card.guayaquil { background: #fff; border: none; }
+.g-icon { width: 16px; height: 16px; background: #e3006f; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 11px; line-height: 1; }
+.g-text { color: #e3006f; font-weight: 800; font-size: 10px; text-transform: uppercase; }
+
+/* PRODUBANCO */
+.bank-card.produbanco { background: #fff; border: none; }
+.pro-icon { width: 14px; height: 14px; background: #009a44; border-radius: 50%; }
+.pro-text { color: #003666; font-weight: 900; font-size: 11px; letter-spacing: -0.3px; text-transform: uppercase; }
+
+/* PACIFICO */
+.bank-card.pacifico { background: #00305e; border: none; }
+.pac-icon { width: 14px; height: 14px; border: 2.5px solid #00c1d5; border-radius: 50%; border-top-color: transparent; transform: rotate(45deg); }
+.pac-text { color: #fff; font-weight: 700; font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; }
+
 .logistics-info { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .logistics-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(242,202,80,0.06); border: 1px solid rgba(242,202,80,0.15); display: flex; align-items: center; justify-content: center; }
 .logistics-icon .mso { font-size: 24px; color: var(--gold); }
@@ -420,7 +447,7 @@ footer {
 .pd-cta-wa-text { display: flex; flex-direction: column; }
 .pd-cta-wa-top { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .pd-cta-wa-sub { font-size: 10.5px; color: rgba(255,255,255,0.65); margin-top: 2px; }
-.pd-cta-wish { width: 72px; flex-shrink: 0; background: rgba(18,18,18,0.95); border: none; border-left: 1px solid rgba(255,255,255,0.06); cursor: pointer; color: #444; font-size: 22px; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
+.pd-cta-wish { width: 72px; flex-shrink: 0; background: rgba(12,12,12,0.95); border: none; border-left: 1px solid rgba(255,255,255,0.06); cursor: pointer; color: #444; font-size: 22px; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
 .pd-cta-wish:hover { color: #f2ca50; }
 #pd-others { flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.04); padding: 24px 44px; background: #060606; display: flex; align-items: center; gap: 32px; overflow-x: auto; }
 .pd-others-label { font-size: 8.5px; letter-spacing: 0.35em; text-transform: uppercase; color: #222; white-space: nowrap; flex-shrink: 0; }
@@ -704,10 +731,22 @@ footer {
     <div class="trust-block">
       <div class="trust-block-title">Banca Local — Transferencias / Depósitos</div>
       <div class="bank-logos">
-        <div class="bank-logo"><span class="bank-logo-text" style="color:#ffd100;">Bco. Pichincha</span></div>
-        <div class="bank-logo"><span class="bank-logo-text" style="color:#00a6e0;">Bco. Guayaquil</span></div>
-        <div class="bank-logo"><span class="bank-logo-text" style="color:#003b70;">Produbanco</span></div>
-        <div class="bank-logo"><span class="bank-logo-text" style="color:#0072ce;">Bco. Pacífico</span></div>
+        <div class="bank-card pichincha" title="Banco Pichincha">
+          <div class="p-icon"></div>
+          <div class="p-text">Pichincha</div>
+        </div>
+        <div class="bank-card guayaquil" title="Banco Guayaquil">
+          <div class="g-icon">G</div>
+          <div class="g-text">Guayaquil</div>
+        </div>
+        <div class="bank-card produbanco" title="Produbanco">
+          <div class="pro-icon"></div>
+          <div class="pro-text">Produbanco</div>
+        </div>
+        <div class="bank-card pacifico" title="Banco del Pacífico">
+          <div class="pac-icon"></div>
+          <div class="pac-text">Pacífico</div>
+        </div>
       </div>
     </div>
     <div class="trust-block">
